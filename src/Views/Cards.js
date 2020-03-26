@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import '../CSS/Card.css';
 
+const axios = require('axios');
+
 class Cards extends React.Component {
     constructor(props) {
         super(props);
@@ -16,9 +18,20 @@ class Cards extends React.Component {
                 3: "#00ffe5",
                 4: "#00ffe5",
                 5: "#00ffe5"
-            }
+            },
+            words: ["","","","",""]
         }
     };
+
+    componentWillMount = async () => {
+        await axios.get("https://webhooks.mongodb-stitch.com/api/client/v2.0/app/tracker-pxmwp/service/HTTP/incoming_webhook/get_card")
+            .then(response => {
+                const data = response.data;
+                this.setState({
+                    words: data
+                })
+            })
+    }
 
     trekKaart = async () => {
         this.setState(prevState => ({
@@ -69,23 +82,23 @@ class Cards extends React.Component {
                         <div className={"card"}>
                             <div className={"wordBox"} style={{background: this.state.cardColors["1"]}} id={1}
                                  onClick={this.handleClick}>
-                                New York
+                                {this.state.words[0]}
                             </div>
                             <div className={"wordBox"} style={{background: this.state.cardColors["2"]}} id={2}
                                  onClick={this.handleClick}>
-                                Intel
+                                {this.state.words[1]}
                             </div>
                             <div className={"wordBox"} style={{background: this.state.cardColors["3"]}} id={3}
                                  onClick={this.handleClick}>
-                                De belastingdienst
+                                {this.state.words[2]}
                             </div>
                             <div className={"wordBox"} style={{background: this.state.cardColors["4"]}} id={4}
                                  onClick={this.handleClick}>
-                                Bernie Sanders
+                                {this.state.words[3]}
                             </div>
                             <div className={"wordBox"} style={{background: this.state.cardColors["5"]}} id={5}
                                  onClick={this.handleClick}>
-                                ETOS
+                                {this.state.words[4]}
                             </div>
                         </div> : null
                     }
