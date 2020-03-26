@@ -12,7 +12,7 @@ const startGenerating = async () => {
         currentCard.push(uniq[index]);
         uniq.splice(index, 1);
     }
-    // await uploadCard(currentCard);
+    await uploadCard(currentCard);
     console.log(currentCard);
     if (uniq.length >= 5)
         await startGenerating();

@@ -72,6 +72,15 @@ class Cards extends React.Component {
             }));
     };
 
+    toTitleCase = (str) => {
+        return str.replace(
+            /\w\S*/g,
+            function(txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            }
+        );
+    }
+
     render() {
         return (
             <div className="App">
@@ -82,23 +91,23 @@ class Cards extends React.Component {
                         <div className={"card"}>
                             <div className={"wordBox"} style={{background: this.state.cardColors["1"]}} id={1}
                                  onClick={this.handleClick}>
-                                {this.state.words[0]}
+                                {this.toTitleCase(this.state.words[0])}
                             </div>
                             <div className={"wordBox"} style={{background: this.state.cardColors["2"]}} id={2}
                                  onClick={this.handleClick}>
-                                {this.state.words[1]}
+                                {this.toTitleCase(this.state.words[1])}
                             </div>
                             <div className={"wordBox"} style={{background: this.state.cardColors["3"]}} id={3}
                                  onClick={this.handleClick}>
-                                {this.state.words[2]}
+                                {this.toTitleCase(this.state.words[2])}
                             </div>
                             <div className={"wordBox"} style={{background: this.state.cardColors["4"]}} id={4}
                                  onClick={this.handleClick}>
-                                {this.state.words[3]}
+                                {this.toTitleCase(this.state.words[3])}
                             </div>
                             <div className={"wordBox"} style={{background: this.state.cardColors["5"]}} id={5}
                                  onClick={this.handleClick}>
-                                {this.state.words[4]}
+                                {this.toTitleCase(this.state.words[4])}
                             </div>
                         </div> : null
                     }
