@@ -24,7 +24,8 @@ class App extends React.Component {
             enemy: 0,
             firstTeam: null,
             secondTeam: null,
-            turn: null
+            turn: null,
+            cardsOnly: false
         }
     }
 
@@ -40,7 +41,7 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                {(window.location.pathname !== "/" && this.state.turn === null) ? <Redirect to='/'/> : null}
+                {(window.location.pathname !== "/" && this.state.turn === null && !this.state.cardsOnly) ? <Redirect to='/'/> : null}
                 <div className={"GlobalHeader"}>
                     <button className={"button4 headerButton"} onClick={this.resetGame}>Reset game</button>
                     {this.state.reset ? <Redirect to="/"/> : null}

@@ -10,7 +10,9 @@ class Redirecting extends React.Component {
     };
 
     componentWillMount() {
-        if(this.props.state.turn === null)
+        if(this.props.state.cardsOnly)
+            this.props.history.push('/cards')
+        else if(this.props.state.turn === null)
             this.props.history.push('/');
         else if(this.props.state.turn === 1)
             this.props.history.push('/cards');

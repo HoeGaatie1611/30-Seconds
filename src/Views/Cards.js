@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import '../CSS/Card.css';
 
 const axios = require('axios');
@@ -52,6 +52,10 @@ class Cards extends React.Component {
         this.props.changeGlobalState("friendly", currentScore + this.state.counter);
     };
 
+    cardsOnly = async () => {
+        this.props.history.push('/redirect')
+    }
+
     handleClick = async (event) => {
         const key = event.currentTarget.getAttribute("id");
         if (this.state.cardColors[`${key}`] === "#00ffe5")
@@ -79,7 +83,7 @@ class Cards extends React.Component {
                 return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
             }
         );
-    }
+    };
 
     render() {
         return (
@@ -116,14 +120,18 @@ class Cards extends React.Component {
                         <button className={"button3 button"} onClick={this.trekKaart}>Trek een kaart</button> : null
                     }
 
-                    {this.state.finished ?
+                    {this.state.finished && !this.props.state.cardsOnly ?
                         <div><h2>Je had er {this.state.counter} goed!</h2><Link to="/board">
                             <button className={"button3 button"} onClick={this.continue}>Ga door naar het bord</button>
                         </Link></div> : null}
+                    {this.state.finished && this.props.state.cardsOnly ?
+                        <div><h2>Je had er {this.state.counter} goed!</h2>
+                            <button className={"button3 button"} onClick={this.cardsOnly}>Pak een nieuwe kaart</button>
+                        </div> : null}
                 </header>
             </div>
         );
     }
 }
 
-export default Cards;
+export default withRouter(Cards);

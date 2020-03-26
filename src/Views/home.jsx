@@ -36,6 +36,11 @@ class Home extends React.Component {
             alert("Vul een team naam in voor het EERSTE team (Deze mag geen streep bevatten");
     };
 
+    cardsOnly = async () => {
+        this.props.changeGlobalState("cardsOnly", true);
+        this.props.history.push("/cards");
+    }
+
     render() {
         return (
             <div className="App">
@@ -52,7 +57,10 @@ class Home extends React.Component {
                     </label>
                     <h1></h1>
                     {/*<Link to="/cards">*/}
-                    <button className={"button3 button"} onClick={this.startGame}>Ga verder</button>
+                    <button className={"button3 button"} onClick={this.startGame}>Ga verder!</button>
+
+                    <h1/>
+                    <button className={"button2 button"} onClick={this.cardsOnly}>Klik hier als je alleen met kaarten wilt spelen</button>
                     {/*</Link>*/}
 
                 </header>
